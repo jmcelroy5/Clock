@@ -35,10 +35,10 @@
 		background-color: #32cd32;
 		margin-top: 140px;
 	}
-	#min-hand {
+	#sec-hand {
 		visibility: hidden;
 	    height:130px;
-		width:10px;
+		width:3px;
 	    -webkit-transform-origin: 50% 0%;
 	    transform-origin: 50% 0%;
 	    -webkit-transform: rotate(180deg);
@@ -46,6 +46,19 @@
 	    background-color:#32cd32;
 	    margin-left:5px;
 	    margin-top:5px;
+	}
+	#min-hand {
+		visibility: hidden;
+	    height:130px;
+		width:8px;
+	    -webkit-transform-origin: 50% 0%;
+	    transform-origin: 50% 0%;
+	    -webkit-transform: rotate(180deg);
+	    transform: rotate(180deg);
+	    background-color:#32cd32;
+	    margin-left:3px;
+	    margin-top:-124px;
+	    position: absolute;
 	}
 	#hour-hand {
 		visibility: hidden;
@@ -70,6 +83,8 @@
 	<div id="ana-clock">
 		<div class="circle outer">
 			<div class="circle inner">
+				<div id="sec-hand">
+				</div>
 				<div id="min-hand">
 				</div>
 				<div id="hour-hand">
@@ -114,7 +129,9 @@
 			$("#digi-clock").empty();
 			$("#digi-clock").append(weekday + "<br>" + month + " " + day + ", " + year + "<br>" + hours + ":" + minutes + ":" + seconds + " " + meridian);
 
-			var min_degrees = (6 * seconds) + 180;
+			var sec_degrees = (6 * seconds) + 180;
+			$("#sec-hand").css("-webkit-transform", "rotate(" + sec_degrees + "deg)").css("visibility","visible");
+			var min_degrees = (6 * minutes) + 180;
 			$("#min-hand").css("-webkit-transform", "rotate(" + min_degrees + "deg)").css("visibility","visible");
 			var hour_degrees = (30 * hours) + 180;
 			$("#hour-hand").css("-webkit-transform", "rotate(" + hour_degrees + "deg)").css("visibility","visible");
